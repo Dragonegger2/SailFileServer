@@ -7,21 +7,20 @@
 
 module.exports = {
     upload: function(req, res) {
-
         res.setTimeout(0);
-
-        req.file('avatar')
+        req.file('uploadFile')
             .upload({
-
                 // You can apply a file upload limit (in bytes)
-                //maxBytes: 1000000
-
+                maxBytes: 0
             }, function whenDone(err, uploadedFiles) {
                 if (err) return res.serverError(err);
-                else return res.json({
+                /*else return res.json({
                     files: uploadedFiles,
                     textParams: req.params.all()
                 });
+                */
+                console.log("File uploaded.");
+                return res.json({ status: 200 } );
             });
     }
 };
