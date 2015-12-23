@@ -8,22 +8,6 @@
 module.exports = {
 
     attributes: {
-        name: {
-            type: 'string',
-            required: true
-        },
-        createdOn: {
-            type: 'string',
-            required: true
-        },
-        size: {
-        	type:'float',
-        	required:true
-        },
-        fileType: {
-        	type: 'string',
-        	required:true
-        }
 
     }
 };
