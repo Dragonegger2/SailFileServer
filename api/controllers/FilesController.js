@@ -13,14 +13,26 @@ module.exports = {
                 // You can apply a file upload limit (in bytes)
                 maxBytes: 0
             }, function whenDone(err, uploadedFiles) {
-                if (err) return res.serverError(err);
-                /*else return res.json({
-                    files: uploadedFiles,
-                    textParams: req.params.all()
-                });
-                */
+                if (err) {
+                    return res.serverError(err);
+                }
+
                 console.log("File uploaded.");
-                return res.json({ status: 200 } );
+                console.log(uploadedFiles);
+                console.log(uploadedFiles[0].UploadedFileMetaData.filename);
+                Files.create({
+                    "name": uploadedFiles.filename,
+                    "createdOn" : "test",
+                    "size" : 120.00,
+                    "fileType" : uploadedFiles.type
+                }).exec(function createCB(err, created) {
+                    console.log('Created error with name ' + err);
+                    console.log('Created file entry with name ' + JSON.stringify(created));
+                });
+
+                return res.json({
+                    status: 200
+                });
             });
     }
 };
